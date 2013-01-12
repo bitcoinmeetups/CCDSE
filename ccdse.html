@@ -1,4 +1,344 @@
-CCDSE
-=====
 
-Colored Coins Decentralized Stock Exchange
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!--
+  Created using jsbin.com
+  Source can be edited via http://jsbin.com/azehen/1/edit
+-->
+<!--
+  Created using jsbin.com
+  Source can be edited via http://jsbin.com/welcome/73414/edit
+-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Colored Coins Decentralized Market Making Stock Exchange</title>
+
+<style id="jsbin-css">
+body {
+  padding: 0;
+  margin: 0;
+  
+  background: #3FA8C6;
+  background-image: -moz-linear-gradient(top, #3fa8c6 0%, #3fa8c6 0%, #399ab2 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3fa8c6), color-stop(0%,#3fa8c6), color-stop(100%,#399ab2));
+  background-image: -webkit-linear-gradient(top, #3fa8c6 0%,#3fa8c6 0%,#399ab2 100%);
+  background-image: -o-linear-gradient(top, #3fa8c6 0%,#3fa8c6 0%,#399ab2 100%);
+  background-image: -ms-linear-gradient(top, #3fa8c6 0%,#3fa8c6 0%,#399ab2 100%);
+  background-image: linear-gradient(to bottom, #3fa8c6 0%,#3fa8c6 0%,#399ab2 100%);
+  color: #fff; 
+  
+  font-family: 'Doppio One', sans-serif; 
+  text-shadow: 0 1px 0 rgba(0,0,0,.3); 
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrapper {
+  width: 50%;
+  margin: 0 auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -0.03em;
+  font-size: 2em;
+}
+
+a { 
+  border-bottom: 1px solid #fff; 
+  border-bottom: 1px solid rgba(255,255,255,0.7); 
+  padding-bottom: 0.15em;
+  position: relative;
+  
+  color: white;
+  text-decoration: none; 
+}
+
+a:after {
+  content: '';
+  position: absolute;
+  height: 1px;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  background: rgba(0,0,0,.1);
+}
+
+a:hover {
+  color: #C0E3EC;
+}
+
+h1 { 
+  margin: 0.667em 0 0;
+  padding-left: 0.5em;
+  text-align: left; 
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+small {
+  margin-top: 1em;
+  display: block;
+  font-style: italic;
+  font-size: 0.667em;
+}
+
+p em {
+  font-style: none;
+}
+
+#welcome {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 1em;
+  padding-left: 20px;
+}
+
+#welcome > div {
+  padding-top: 1px; 
+}
+
+#dave {
+  float: left;
+  margin-top: 3em
+}
+
+#welcome > h2 {
+  margin-top: 0.5em;
+  padding-left: 0.5em;
+  margin-bottom: 0;
+}
+
+.bubble p {
+  line-height: 22px; 
+}
+
+.bubble {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.1);
+
+  padding: 0.667em 1em;
+  position: relative;
+}
+
+.bubble:after {
+  content: "";
+  position: absolute;
+  
+  width: 0; 
+  height: 0; 
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent; 
+  border-right: 20px solid white; 
+  border-right-color: inherit;
+  top: 50px;
+  left: -20px;
+}
+
+#features {
+  margin: 0.444em 0 0;
+  clear: both;
+}
+
+#features > h2 {
+  margin: 0;
+}
+
+#features ol {
+  position: relative;
+  padding: 1em 0 1.5em;
+  background: rgba(0,0,0,.1);
+  border-color: rgba(0,0,0,.1);
+  margin: 0;
+  overflow: hidden;
+  list-style: none;
+  counter-reset: item;
+}
+
+#features li {
+  width: 30%;
+  padding: 0 1.5%;
+  float: left;
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+#features li h2 {
+  display: block;
+  padding: 1em;
+  margin: 0.667em auto 1em;
+  font-size: 1em;
+  
+  line-height: 1em;
+  text-align: center;
+  
+  background: rgba(0,0,0,.1);
+  border-radius: 2em;
+  box-shadow: inset 0 0 1em rgba(0,0,0,.1), 0 2px 2px rgba(255,255,255,.1);
+}
+
+#next > div {
+  width: 45%;
+  float: left;
+  padding: 0 2.5%;
+}
+
+img {
+  z-index: 1;
+  -webkit-transition: -webkit-transform 2s ease-in-out;
+ -moz-transition: -moz-transform 2s ease-in-out;
+ -o-transition: -o-transform 2s ease-in-out;
+ -ms-transition: -ms-transform 2s ease-in-out;
+ transition: transform 2s ease-in-out;
+ position: relative;
+}
+
+img:active {
+  -webkit-transform: rotate(1440deg) scale(1.2);
+  -moz-transform: rotate(1440deg) scale(1.2);
+  -o-transform: rotate(1440deg) scale(1.2);
+  -ms-transform: rotate(1440deg) scale(1.2);
+  transform: rotate(1440deg) scale(1.2);
+}
+
+@media screen and (max-width: 1200px) {
+  .wrapper {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .wrapper {
+    width: auto;
+    margin: 0;
+  }
+  #welcome {
+    margin-right: 2.5%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .wrapper {
+    text-align: center;
+  }
+  #dave {
+    float: none;
+  }
+  
+  #welcome {
+  padding: 0 1.5em;
+    margin: 0;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 0;
+    padding-left: 0;
+    font-size: 1.8em;
+  }
+  #welcome > h2 {
+    margin-bottom: 0.667em;
+  }
+  .bubble {
+    text-align: center;
+  }
+  .bubble:after {
+    display: none;
+  }
+  #features li {
+    width: 47%;
+  }
+  #features li:last-child {
+    float: none;
+    clear: both;
+    margin: 0 auto;
+  }
+  
+  #next > div {
+    float none;
+    width: auto;
+  }
+}
+
+
+
+
+
+
+
+
+</style>
+
+<style id="jsbin-css">
+
+</style>
+</head>
+
+<body><script type="text/javascript">ANCHORFREE_VERSION="623161526"</script><script type='text/javascript'>var _AF2$={'SN':'HSSHIELD00TH','IP':'69.22.170.120','CH':'HSSCNL000393','CT':'XX','HST':'&SFLAG=1&FW_UA=MSIE/9.0','AFH':'hss77','RN':Math.floor(Math.random()*999),'TOP':(parent.location!=document.location||top.location!=document.location)?0:1,'AFVER':'2.83','fbw':false,'FBWCNT_CHROME':0};if(/^(.*,)?(11C)(,.*)?$/g.exec(_AF2$.CT)!=null&&_AF2$.CH!='HSSCNL000242'){document.write("<scr"+"ipt src='http://box.anchorfree.net/insert/par.js?v="+ANCHORFREE_VERSION+"' type='text/javascript'></scr"+"ipt>")}document.write("<style type='text/css' title='AFc_css"+_AF2$.RN+"' >.AFc_body"+_AF2$.RN+"{} .AFc_all"+_AF2$.RN+",a.AFc_all"+_AF2$.RN+":hover,a.AFc_all"+_AF2$.RN+":visited{outline:none;background:transparent;border:none;margin:0;padding:0;top:0;left:0;text-decoration:none;overflow:hidden;display:block;z-index:666999;}</style>");</script><style type='text/css'>.AFhss_dpnone{display:none;width:0;height:0}</style><img src="about:blank" id="AFhss_trk0" name="AFhss_trk0" style="display:none;width:0" /><img src="about:blank"id="AFhss_trk"name="AFhss_trk"style="display:none;width:0"/><div id="AFhss_dfs"class="AFhss_dpnone"><div id="AFhss_adrp0"class="AFhss_dpnone"></div><div id="AFhss_adrp1"class="AFhss_dpnone"></div><div id="AFhss_adrp2"class="AFhss_dpnone"></div><div id="AFhss_adrp3"class="AFhss_dpnone"></div><div id="AFhss_adrp4"class="AFhss_dpnone"></div><div id="AFhss_adrp5"class="AFhss_dpnone"></div><div id="AFhss_adrp6"class="AFhss_dpnone"></div><div id="AFhss_adrp7"class="AFhss_dpnone"></div><div id="AFhss_adrp8"class="AFhss_dpnone"></div><div id="AFhss_adrp9"class="AFhss_dpnone"></div></div><script type='text/javascript'>if(_AF2$.TOP==1){if(_AF2$.CH=='HSSCNL000242'){document.write("<scr"+"ipt src='http://box.anchorfree.net/insert/41.js?v="+ANCHORFREE_VERSION+"' type='text/javascript'></scr"+"ipt>")}else if(_AF2$.CH=='HSSCNL000248'){document.write("<scr"+"ipt src='http://box.anchorfree.net/insert/60s.js?v="+ANCHORFREE_VERSION+"' type='text/javascript'></scr"+"ipt>")}else if(_AF2$.CH=='HSSCNL000249'){document.write("<scr"+"ipt src='http://box.anchorfree.net/insert/61s.js?v="+ANCHORFREE_VERSION+"' type='text/javascript'></scr"+"ipt>")}else if(_AF2$.CH=='HSSCNL000484'){document.write("<scr"+"ipt src='http://box.anchorfree.net/insert/62fbw-c2ask.js?v="+ANCHORFREE_VERSION+"' type='text/javascript'></scr"+"ipt>")}else{var m=new RegExp(/&FBWCNT_CHROME=([0-9]+)/g).exec(_AF2$.HST);_AF2$.FBWCNT_CHROME=(m!=null&&typeof(m[1])!='undefined')?parseInt(m[1]):0;if(parseFloat(_AF2$.AFVER)>=2.03&&/NO_FBW_CHROME/.test(_AF2$.HST)==false&&_AF2$.FBWCNT_CHROME<10&&navigator.appVersion.indexOf("Win")!=-1){_AF2$.strl=2048;_AF2$.fbw=true}document.write("<scr"+"ipt src='http://box.anchorfree.net/insert/62fbw-c2.js?v="+ANCHORFREE_VERSION+9998+"' type='text/javascript'></scr"+"ipt>")}}</script>
+<p><strong>Colored Coins Decentralized (Market Making) Stock Exchange</strong></p>
+<p><strong><a href="#listofassets">List of assets</a></strong></p>
+<p><strong><a href="#howtobuy">How to buy<br />
+</a></strong></p>
+<p><strong><a href="#howtouse">How to use</a></strong></p>
+<p>================================================</p>
+
+<p><strong><a name="listofassets" id="listofassets"></a>Color (click the link for contract details), Color ID, Balance, Amount Available, Buy Price (BTC), Sell Price (BTC)</strong></p>
+<p><a href="#contract1">Congo Shares</a>, ad0b37e2650341589089c69b870bf47381c08184, 1000, 0.01, 0.011</p>
+<p>Test112, 1aa66d569297a233d02e79f04cf23cabf58d09f5, 0, 0.005, 0.0051</p>
+<p>
+  <script>
+
+  </script>
+  <script src="http://static.jsbin.com/js/render/edit.js"></script>
+  <script>jsbinShowEdit({"root":"http://static.jsbin.com","csrf":"vp7gKRdcjYErVjO229i+PHDV"});</script>
+  <script src="http://static.jsbin.com/js/vendor/eventsource.js"></script>
+  <script src="http://static.jsbin.com/js/spike.js"></script>=========================================================</p>
+<p><strong><a name="howtobuy" id="howtobuy"></a>How to buy</strong></p>
+<p>Send the corresponding amount in uncolored bitcoins to 1FL8nGQzRF6j39566viJQ12KnYeBY9kurm</p>
+<p>Notify us on notification11122@dudmail.com and include the address where you want to receive the colored coins.</p>
+<p>=======================================================</p>
+<p><strong><a name="howtouse" id="howtouse"></a>How to use and about</strong></p>
+<p>Unlike centralized bitcoin based stock exchanges, the CCDSE cannot be shut down. This is because the assets can be moved freely from platform to platform. The source code of this simplistic website can be found <a href="https://github.com/Entrances/CCDSE">here</a>. You can clone it and make your own stock exchange in 5 minutes.</p>
+<p>First, download the ArmoryX software from bitcoinx.org</p>
+<p>Run BitcoinQT</p>
+<p>Run ArmoryQT</p>
+<p>Click on the hallucinate menu option</p>
+<p>======================================================</p>
+<p><strong><a name="contract1" id="contract1"></a>Contract#1</strong></p>
+<p>Congo Shares</p>
+<p>We promise to buy back the Congo Shares for not less than 0.01 BTC for the foreseeable future. We can thus guarantee liquidity.</p>
+<p>We promise to upload 10 pictures of people from the Congo to 4chan.org if we can sell more than 10 units of the Congo Shares.</p>
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-1656750-13']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+})();
+
+  </script>
+<script>
+
+</script>
+<script src="http://static.jsbin.com/js/render/edit.js"></script>
+<script>jsbinShowEdit({"root":"http://static.jsbin.com","csrf":"9DyXsaQtcO76aPdWz2omTnVt"});</script>
+<script src="http://static.jsbin.com/js/vendor/eventsource.js"></script>
+<script src="http://static.jsbin.com/js/spike.js"></script>
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-1656750-13']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+})();
+</script>
+
+</body>
+</html>
